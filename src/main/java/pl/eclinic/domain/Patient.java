@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 
@@ -23,6 +22,22 @@ public class Patient {
     private String firstName = "";
     @Column(name="last_name")
     private String lastName = "";
+    @Column(name="pesel", unique = true)
+    private String pesel = "";
+    @Column(name="adress")
+    private String adress = "";
+    @Column(name="postcode")
+    private String postcode = "00-000";
+    @Column(name="twon")
+    private String town = "";
+    @Column(name="telephone")
+    private String telephone = "";
+    @Column(name="email", unique = true)
+    private String email = "";
+    @Column(name="password")
+    private String password = "";
+
+
 
 
     public Patient(String firstName, String lastName) {
