@@ -1,9 +1,6 @@
 package pl.eclinic.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -13,13 +10,13 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "patient")
 public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id_patient")
-    private Long idPatient;
+    private Long id;
 
     @Column(name="first_name")
     private String firstName = "";
@@ -27,31 +24,33 @@ public class Patient {
     @Column(name="last_name")
     private String lastName = "";
 
-    @Column(name="pesel")
+    @Column(unique = true)
     private String pesel = "";
 
-    @Column(name="adress")
-    private String adress = "";
+    private String address = "";
 
     @Size(min = 6, max = 6)
     @Pattern(regexp = "[0-9]{2}\\-[0-9]{3}")
-    @Column(name="postcode")
     private String postcode = "00-000";
 
-    @Column(name="town")
     private String town = "";
 
-    @Column(name="telephone")
     private String telephone = "";
 
-    @Column(name="email")
-     private String email = "";
+    @Column(unique = true)
+    private String email = "";
 
-   @Column(name="password")
     private String password = "";
 
-
-
-
-
+    public Patient(String firstName, String lastName, String pesel, String address, @Size(min = 6, max = 6) @Pattern(regexp = "[0-9]{2}\\-[0-9]{3}") String postcode, String town, String telephone, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.pesel = pesel;
+        this.address = address;
+        this.postcode = postcode;
+        this.town = town;
+        this.telephone = telephone;
+        this.email = email;
+        this.password = password;
+    }
 }
