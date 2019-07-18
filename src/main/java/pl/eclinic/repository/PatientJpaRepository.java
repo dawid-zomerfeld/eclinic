@@ -9,6 +9,7 @@ import java.util.Set;
 public interface PatientJpaRepository extends CrudRepository<Patient, Long> {
 
     Set<Patient> findAll();
+    Optional<Patient> findById(Long id);
     Patient save(Patient patient);
 
 
