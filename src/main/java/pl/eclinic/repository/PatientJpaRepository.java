@@ -12,6 +12,7 @@ public interface PatientJpaRepository extends CrudRepository<Patient, Long> {
     Optional<Patient> findById(Long id);
     Patient save(Patient patient);
 
+    Patient findOneById(Long id);
 
 
 

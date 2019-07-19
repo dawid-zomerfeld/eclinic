@@ -31,20 +31,23 @@ public class Starter implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-     //  Patient osoba = new Patient("Adam", "Zomerfeld", "152123226", "Daleko 29", "26-080", "MNW", "75647", "aasdny@wp.pl" ,"123");
-      //  patientJpaRepository.save(osoba);
+     //  Patient pacjent = new Patient("Adam", "Zomerfeld", "152123226", "Daleko 29", "26-080", "MNW", "75647", "aasdny@wp.pl" ,"123");
+     //   patientJpaRepository.save(osoba);
        // patientJpaRepository.deleteById(5L);
 
 
-    //  Doctor lekarz = new Doctor("Igor", "Nowak", "Ginekolog", "docto2r2@wp.pl", "tajne");
-      // doctorJpaRepository.save(lekarz);
-     //   doctorJpaRepository.deleteById(7L);
+     // Doctor doktorek = new Doctor("Igor", "Nowak", "Ginekolog", "docto2r2@wp.pl", "tajne");
+     //  doctorJpaRepository.save(lekarz);
+      //  doctorJpaRepository.deleteById(1L);
 
 
 
+       // Doctor doktorek = doctorJpaRepository.findOneById(2L);
+      //  Patient pacjent = patientJpaRepository.findOneById(2L);
 
-
-
+      //  Visit visit = new Visit(doktorek, pacjent);
+      //  visitJpaRepository.save(visit);
+      //  visitJpaRepository.deleteById(3L);
 
 
         System.out.println("Pacjenci");
@@ -62,6 +65,13 @@ public class Starter implements CommandLineRunner {
 
         for (Doctor doctor : doctors) {
             System.out.println(doctor);
+        }
+
+        System.out.println("Wizyty");
+        Set<Visit> visits = visitJpaRepository.findAll();
+
+        for (Visit visi : visits) {
+            System.out.println(visi);
         }
 
     }

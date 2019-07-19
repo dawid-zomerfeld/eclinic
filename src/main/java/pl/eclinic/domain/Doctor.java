@@ -3,16 +3,18 @@ package pl.eclinic.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "doctor")
-public class Doctor {
+public class Doctor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +33,7 @@ public class Doctor {
 
     private String password = "";
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Set<Visit> visits = new HashSet<>();
 
     @Override
@@ -61,9 +63,9 @@ public class Doctor {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", specialization='" + specialization + '\'' +
+               ", specialization='" + specialization + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+              ", password='" + password + '\'' +
                 '}';
     }
 }

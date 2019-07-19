@@ -10,6 +10,8 @@ public interface DoctorJpaRepository extends CrudRepository<Doctor, Long> {
 
 
     Set<Doctor> findAll();
-    Optional<Doctor> findById(Long id);
+ //   Optional<Doctor> findById(Long id);
     Doctor save(Doctor doctor);
+
+    Doctor findOneById(Long id);
 }
