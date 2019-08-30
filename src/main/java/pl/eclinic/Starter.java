@@ -50,29 +50,29 @@ public class Starter implements CommandLineRunner {
       //  visitJpaRepository.deleteById(3L);
 
 
-        System.out.println("Pacjenci");
-        Set<Patient> patients = patientJpaRepository.findAll();
+      //  System.out.println("Pacjenci");
+      //  Set<Patient> patients = patientJpaRepository.findAll();
 
 
 
-        for (Patient patient : patients) {
-           System.out.println(patient);
-        }
+     //   for (Patient patient : patients) {
+      //     System.out.println(patient);
+      //  }
 
 
-       System.out.println("Doktorzy");
-        Set<Doctor> doctors = doctorJpaRepository.findAll();
+     //  System.out.println("Doktorzy");
+     //   Set<Doctor> doctors = doctorJpaRepository.findAll();
 
-        for (Doctor doctor : doctors) {
-            System.out.println(doctor);
-        }
+     //   for (Doctor doctor : doctors) {
+      //      System.out.println(doctor);
+      //  }
 
-        System.out.println("Wizyty");
-        Set<Visit> visits = visitJpaRepository.findAll();
+     //   System.out.println("Wizyty");
+      //  Set<Visit> visits = visitJpaRepository.findAll();
 
-        for (Visit visi : visits) {
-            System.out.println(visi);
-        }
+     //   for (Visit visi : visits) {
+     //       System.out.println(visi);
+     //   }
 
     }
 }
