@@ -1,16 +1,17 @@
 package pl.eclinic.rest.patient.register;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.eclinic.domain.Patient;
 
 public class RegisterDataConverter {
 
-    private static BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-
+    private static PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
     static Patient add(RegisterData registerData) {
         return Patient.builder()
                 .email(registerData.getEmail())
-                .password(bCryptPasswordEncoder.encode(registerData.getPassword()))
+                .password(encoder.encode(registerData.getPassword()))
                 .firstName(registerData.getFirstName())
                 .lastName(registerData.getLastName())
                 .pesel(registerData.getPesel())
