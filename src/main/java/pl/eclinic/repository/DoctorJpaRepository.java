@@ -14,4 +14,5 @@ public interface DoctorJpaRepository extends CrudRepository<Doctor, Long> {
     Doctor save(Doctor doctor);
 
     Doctor findOneById(Long id);
+    Optional<Doctor> findByEmail(String email);
 }

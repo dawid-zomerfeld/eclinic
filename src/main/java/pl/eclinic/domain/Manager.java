@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,5 +27,10 @@ public class Manager implements Serializable {
     private String password = "";
 
 
+    private static PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
+    public Manager(String email, String password) {
+        this.email = email;
+        this.password = encoder.encode(password);
+    }
 }

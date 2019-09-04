@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -29,4 +31,13 @@ public class Recepcionist implements Serializable {
     private String email = "";
 
     private String password = "";
+
+    private static PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+    public Recepcionist(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = encoder.encode(password);
+    }
 }

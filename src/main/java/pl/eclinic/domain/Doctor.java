@@ -1,6 +1,8 @@
 package pl.eclinic.domain;
 
 import lombok.*;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -49,12 +51,14 @@ public class Doctor implements Serializable {
         return Objects.hash(id);
     }
 
+    private static PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
     public Doctor(String firstName, String lastName, String specialization, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.specialization = specialization;
         this.email = email;
-        this.password = password;
+        this.password = encoder.encode(password);
     }
 
     @Override
