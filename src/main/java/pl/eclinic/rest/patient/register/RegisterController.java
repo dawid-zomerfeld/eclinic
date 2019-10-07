@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.eclinic.repository.DoctorJpaRepository;
-import pl.eclinic.repository.ManagerJpaRepository;
+import pl.eclinic.repository.AdminJpaRepository;
 import pl.eclinic.repository.PatientJpaRepository;
 import pl.eclinic.repository.RecepcionistJpaRepository;
 
@@ -20,13 +20,13 @@ public class RegisterController {
     private PatientJpaRepository patientJpaRepository;
     private DoctorJpaRepository doctorJpaRepository;
     private RecepcionistJpaRepository recepcionistJpaRepository;
-    private ManagerJpaRepository managerJpaRepository;
+    private AdminJpaRepository adminJpaRepository;
 
-    public RegisterController(PatientJpaRepository patientJpaRepository, DoctorJpaRepository doctorJpaRepository, RecepcionistJpaRepository recepcionistJpaRepository, ManagerJpaRepository managerJpaRepository) {
+    public RegisterController(PatientJpaRepository patientJpaRepository, DoctorJpaRepository doctorJpaRepository, RecepcionistJpaRepository recepcionistJpaRepository, AdminJpaRepository adminJpaRepository) {
         this.patientJpaRepository = patientJpaRepository;
         this.doctorJpaRepository = doctorJpaRepository;
         this.recepcionistJpaRepository = recepcionistJpaRepository;
-        this.managerJpaRepository = managerJpaRepository;
+        this.adminJpaRepository = adminJpaRepository;
     }
 
     @PostMapping("/users/register")
@@ -37,7 +37,7 @@ public class RegisterController {
                         .filter(value -> !patientJpaRepository.findByEmail(value.getEmail()).isPresent())
                         .filter(value -> !doctorJpaRepository.findByEmail(value.getEmail()).isPresent())
                         .filter(value -> !recepcionistJpaRepository.findByEmail(value.getEmail()).isPresent())
-                        .filter(value -> !managerJpaRepository.findByEmail(value.getEmail()).isPresent())
+                        .filter(value -> !adminJpaRepository.findByEmail(value.getEmail()).isPresent())
                         .flatMap(value -> Optional.ofNullable(patientJpaRepository.save(value)))
                         .isPresent() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST
         );

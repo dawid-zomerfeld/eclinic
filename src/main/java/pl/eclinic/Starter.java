@@ -2,11 +2,9 @@ package pl.eclinic;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import pl.eclinic.domain.*;
+import pl.eclinic.domain.Admin;
+import pl.eclinic.domain.Recepcionist;
 import pl.eclinic.repository.*;
-
-import java.util.Optional;
-import java.util.Set;
 
 
 @Component
@@ -18,14 +16,14 @@ public class Starter implements CommandLineRunner {
     private DoctorJpaRepository doctorJpaRepository;
     private VisitJpaRepository visitJpaRepository;
     private RecepcionistJpaRepository recepcionistJpaRepository;
-    private ManagerJpaRepository managerJpaRepository;
+    private AdminJpaRepository adminJpaRepository;
 
-    public Starter(PatientJpaRepository patientJpaRepository, DoctorJpaRepository doctorJpaRepository, VisitJpaRepository visitJpaRepository, RecepcionistJpaRepository recepcionistJpaRepository, ManagerJpaRepository managerJpaRepository) {
+    public Starter(PatientJpaRepository patientJpaRepository, DoctorJpaRepository doctorJpaRepository, VisitJpaRepository visitJpaRepository, RecepcionistJpaRepository recepcionistJpaRepository, AdminJpaRepository adminJpaRepository) {
         this.patientJpaRepository = patientJpaRepository;
         this.doctorJpaRepository = doctorJpaRepository;
         this.visitJpaRepository = visitJpaRepository;
         this.recepcionistJpaRepository = recepcionistJpaRepository;
-        this.managerJpaRepository = managerJpaRepository;
+        this.adminJpaRepository = adminJpaRepository;
     }
 
     @Override
@@ -39,12 +37,12 @@ public class Starter implements CommandLineRunner {
      // Doctor doktorek = new Doctor("Igor", "Nowak", "Ginekolog", "doctor@doctor", "doctor");
       // doctorJpaRepository.save(doktorek);
 
-      //   Recepcionist recepcionist = new Recepcionist("Adam", "Kowalski", "recepcionist@recepcionist", "recepcionist");
+     //    Recepcionist recepcionist = new Recepcionist("Adam", "Kowalski", "recepcionist@recepcionist", "recepcionist");
       //   recepcionistJpaRepository.save(recepcionist);
 
 
-       //    Manager manager = new Manager("manager@manager", "manager");
-        //   managerJpaRepository.save(manager);
+        //  Admin admin = new Admin("admin@admin", "admin123");
+         //  adminJpaRepository.save(admin);
 
 
       //  doctorJpaRepository.deleteById(1L);

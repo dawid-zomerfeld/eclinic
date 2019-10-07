@@ -5,12 +5,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import pl.eclinic.domain.Admin;
 import pl.eclinic.domain.Doctor;
-import pl.eclinic.domain.Manager;
 import pl.eclinic.domain.Patient;
 import pl.eclinic.domain.Recepcionist;
+import pl.eclinic.repository.AdminJpaRepository;
 import pl.eclinic.repository.DoctorJpaRepository;
-import pl.eclinic.repository.ManagerJpaRepository;
 import pl.eclinic.repository.PatientJpaRepository;
 import pl.eclinic.repository.RecepcionistJpaRepository;
 
@@ -23,13 +23,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
     private PatientJpaRepository patientJpaRepository;
     private DoctorJpaRepository doctorJpaRepository;
     private RecepcionistJpaRepository recepcionistJpaRepository;
-    private ManagerJpaRepository managerJpaRepository;
+    private AdminJpaRepository adminJpaRepository;
 
-    public UserDetailServiceImpl(PatientJpaRepository patientJpaRepository, DoctorJpaRepository doctorJpaRepository, RecepcionistJpaRepository recepcionistJpaRepository, ManagerJpaRepository managerJpaRepository) {
+    public UserDetailServiceImpl(PatientJpaRepository patientJpaRepository, DoctorJpaRepository doctorJpaRepository, RecepcionistJpaRepository recepcionistJpaRepository, AdminJpaRepository adminJpaRepository) {
         this.patientJpaRepository = patientJpaRepository;
         this.doctorJpaRepository = doctorJpaRepository;
         this.recepcionistJpaRepository = recepcionistJpaRepository;
-        this.managerJpaRepository = managerJpaRepository;
+        this.adminJpaRepository = adminJpaRepository;
     }
 
 
@@ -38,7 +38,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         Optional<Patient> patientByEmail = patientJpaRepository.findByEmail(email);
         Optional<Doctor>  doctorByEmail = doctorJpaRepository.findByEmail(email);
         Optional<Recepcionist> rececpcionistByEmail = recepcionistJpaRepository.findByEmail(email);
-        Optional<Manager> managerByEmail = managerJpaRepository.findByEmail(email);
+        Optional<Admin> adminByEmail = adminJpaRepository.findByEmail(email);
         if (patientByEmail.isPresent()) {
             Patient patient = patientByEmail.get();
             return new org.springframework.security.core.userdetails.
@@ -57,10 +57,10 @@ public class UserDetailServiceImpl implements UserDetailsService {
                     User(recepcionist.getEmail(), recepcionist.getPassword(), Arrays.asList(new SimpleGrantedAuthority("recepcionist"), new SimpleGrantedAuthority(String.valueOf(recepcionist.getId()))));
         }
 
-        else if (managerByEmail.isPresent()) {
-            Manager manager = managerByEmail.get();
+        else if (adminByEmail.isPresent()) {
+            Admin admin = adminByEmail.get();
             return new org.springframework.security.core.userdetails.
-                    User(manager.getEmail(), manager.getPassword(), Arrays.asList(new SimpleGrantedAuthority("manager"), new SimpleGrantedAuthority(String.valueOf(manager.getId()))));
+                    User(admin.getEmail(), admin.getPassword(), Arrays.asList(new SimpleGrantedAuthority("admin"), new SimpleGrantedAuthority(String.valueOf(admin.getId()))));
         }
 
         else {

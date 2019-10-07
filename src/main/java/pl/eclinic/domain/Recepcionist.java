@@ -1,15 +1,13 @@
 package pl.eclinic.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,6 +28,8 @@ public class Recepcionist implements Serializable {
     @Column(unique = true)
     private String email = "";
 
+    private Boolean banned;
+
     private String password = "";
 
     private static PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -39,5 +39,6 @@ public class Recepcionist implements Serializable {
         this.lastName = lastName;
         this.email = email;
         this.password = encoder.encode(password);
+        this.banned = false;
     }
 }

@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -34,6 +34,8 @@ public class Doctor implements Serializable {
     private String email = "";
 
     private String password = "";
+
+    private Boolean banned;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Set<Visit> visits = new HashSet<>();

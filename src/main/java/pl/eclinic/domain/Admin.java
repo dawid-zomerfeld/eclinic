@@ -14,8 +14,8 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "manager")
-public class Manager implements Serializable {
+@Entity(name = "administrator")
+public class Admin implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class Manager implements Serializable {
 
     private static PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
-    public Manager(String email, String password) {
+    public Admin(String email, String password) {
         this.email = email;
         this.password = encoder.encode(password);
     }
