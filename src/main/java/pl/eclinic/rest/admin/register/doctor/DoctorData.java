@@ -2,7 +2,6 @@ package pl.eclinic.rest.admin.register.doctor;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Email;
-
 import javax.validation.constraints.Size;
 
 @NoArgsConstructor

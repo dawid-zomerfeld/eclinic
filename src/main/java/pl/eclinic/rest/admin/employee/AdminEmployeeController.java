@@ -1,14 +1,10 @@
 package pl.eclinic.rest.admin.employee;
 
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.eclinic.domain.Doctor;
 import pl.eclinic.domain.Recepcionist;
-import pl.eclinic.repository.DoctorJpaRepository;
-import pl.eclinic.repository.RecepcionistJpaRepository;
-
+import pl.eclinic.services.AdminService;
 import java.util.Set;
 
 @CrossOrigin
@@ -16,21 +12,20 @@ import java.util.Set;
 @PreAuthorize("hasAuthority('admin')")
 public class AdminEmployeeController {
 
-    private RecepcionistJpaRepository recepcionistJpaRepository;
-    private DoctorJpaRepository doctorJpaRepository;
+    private AdminService adminservice;
 
-    public AdminEmployeeController(RecepcionistJpaRepository recepcionistJpaRepository, DoctorJpaRepository doctorJpaRepository) {
-        this.recepcionistJpaRepository = recepcionistJpaRepository;
-        this.doctorJpaRepository = doctorJpaRepository;
+    public AdminEmployeeController(AdminService adminservice) {
+        this.adminservice = adminservice;
     }
 
     @GetMapping("/admin/employee/recepcionists")
     public Set<Recepcionist> getRecepcionists() {
-        return recepcionistJpaRepository.findAll();
+        return adminservice.findAllRecepcionists();
     }
 
     @GetMapping("/admin/employee/doctors")
     public Set<Doctor> getDoctors() {
-        return doctorJpaRepository.findAll();
+        return adminservice.findAllDoctors();
     }
+
 }

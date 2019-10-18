@@ -10,9 +10,10 @@ import java.io.Serializable;
 @Builder
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "recepcionist")
+@Entity(name = "Recepcionist")
 public class Recepcionist implements Serializable {
 
     @Id
@@ -32,13 +33,4 @@ public class Recepcionist implements Serializable {
 
     private String password = "";
 
-    private static PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-    public Recepcionist(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = encoder.encode(password);
-        this.banned = false;
-    }
 }

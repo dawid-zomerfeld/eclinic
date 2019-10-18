@@ -6,6 +6,8 @@ import pl.eclinic.domain.Admin;
 import pl.eclinic.domain.Recepcionist;
 import pl.eclinic.repository.*;
 
+import java.util.Optional;
+
 
 @Component
 public class Starter implements CommandLineRunner {
@@ -37,10 +39,12 @@ public class Starter implements CommandLineRunner {
      // Doctor doktorek = new Doctor("Igor", "Nowak", "Ginekolog", "doctor@doctor", "doctor");
       // doctorJpaRepository.save(doktorek);
 
-     //    Recepcionist recepcionist = new Recepcionist("Adam", "Kowalski", "recepcionist@recepcionist", "recepcionist");
+      //   Recepcionist recepcionist = new Recepcionist("Adam", "Kowalski", "recepcionist@recepcionist", "recepcionist");
       //   recepcionistJpaRepository.save(recepcionist);
 
 
+
+        // recepcionistJpaRepository.updateRecepcionistBanned(1L, false);
         //  Admin admin = new Admin("admin@admin", "admin123");
          //  adminJpaRepository.save(admin);
 
@@ -61,10 +65,6 @@ public class Starter implements CommandLineRunner {
       //  Set<Patient> patients = patientJpaRepository.findAll();
 
 
-
-     //   for (Patient patient : patients) {
-      //     System.out.println(patient);
-      //  }
 
 
      //  System.out.println("Doktorzy");

@@ -18,11 +18,8 @@ import java.util.Arrays;
 @EnableAuthorizationServer
 public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
-
     private TokenStore tokenStore;
-
     private JwtAccessTokenConverter accessTokenConverter;
-
     private AuthenticationManager authenticationManager;
 
     public OAuth2AuthorizationServer(TokenStore tokenStore, JwtAccessTokenConverter accessTokenConverter, AuthenticationManager authenticationManager) {
@@ -30,7 +27,6 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
         this.accessTokenConverter = accessTokenConverter;
         this.authenticationManager = authenticationManager;
     }
-
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {

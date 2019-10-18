@@ -32,7 +32,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
         this.adminJpaRepository = adminJpaRepository;
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Patient> patientByEmail = patientJpaRepository.findByEmail(email);
@@ -47,14 +46,23 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
         else if (doctorByEmail.isPresent()) {
             Doctor doctor = doctorByEmail.get();
-            return new org.springframework.security.core.userdetails.
-                    User(doctor.getEmail(), doctor.getPassword(), Arrays.asList(new SimpleGrantedAuthority("doctor"), new SimpleGrantedAuthority(String.valueOf(doctor.getId()))));
+            if (!doctor.getBanned()) {
+                return new org.springframework.security.core.userdetails.
+                        User(doctor.getEmail(), doctor.getPassword(), Arrays.asList(new SimpleGrantedAuthority("doctor"), new SimpleGrantedAuthority(String.valueOf(doctor.getId()))));
+            }
+            else {
+                throw new UsernameNotFoundException("User with email " + email +" is banned");
+            }
         }
-
         else if (rececpcionistByEmail.isPresent()) {
             Recepcionist recepcionist = rececpcionistByEmail.get();
-            return new org.springframework.security.core.userdetails.
-                    User(recepcionist.getEmail(), recepcionist.getPassword(), Arrays.asList(new SimpleGrantedAuthority("recepcionist"), new SimpleGrantedAuthority(String.valueOf(recepcionist.getId()))));
+            if (!recepcionist.getBanned()) {
+                return new org.springframework.security.core.userdetails.
+                        User(recepcionist.getEmail(), recepcionist.getPassword(), Arrays.asList(new SimpleGrantedAuthority("recepcionist"), new SimpleGrantedAuthority(String.valueOf(recepcionist.getId()))));
+            }
+            else {
+                throw new UsernameNotFoundException("User with email " + email +" is banned");
+            }
         }
 
         else if (adminByEmail.isPresent()) {

@@ -62,31 +62,4 @@ public class Patient implements Serializable {
         return Objects.hash(id);
     }
 
-    public Patient(String firstName, String lastName, String pesel, String address, @Size(min = 6, max = 6) @Pattern(regexp = "[0-9]{2}\\-[0-9]{3}") String postcode, String town, String telephone, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.pesel = pesel;
-        this.address = address;
-        this.postcode = postcode;
-        this.town = town;
-        this.telephone = telephone;
-        this.email = email;
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "Patient{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", pesel='" + pesel + '\'' +
-                ", address='" + address + '\'' +
-                ", postcode='" + postcode + '\'' +
-                ", town='" + town + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }

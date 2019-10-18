@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Builder
 @EqualsAndHashCode
 @ToString
-public class RegisterData {
+public class PatientData {
 
     @Email
     private String email;
