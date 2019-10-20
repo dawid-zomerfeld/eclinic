@@ -36,9 +36,24 @@ public class AdminService {
         return ResponseEntity.accepted().build();
     }
 
+    public ResponseEntity changeRecepcionist(Long id, RecepcionistData recepcionistData) {
+        String firstName = recepcionistData.getFirstName();
+        String lastName = recepcionistData.getLastName();
+        recepcionistJpaRepository.updateRecepcionist(id, firstName, lastName);
+        return ResponseEntity.accepted().build();
+    }
+
     public ResponseEntity changeDoctorBanned(Long id, DoctorData doctorData) {
         Boolean banned = doctorData.getBanned();
         doctorJpaRepository.updateDoctorBanned(id, banned);
+        return ResponseEntity.accepted().build();
+    }
+
+    public ResponseEntity changeDoctor(Long id, DoctorData doctorData) {
+        String firstName = doctorData.getFirstName();
+        String lastName = doctorData.getLastName();
+        String specialization = doctorData.getSpecialization();
+        doctorJpaRepository.updateDoctor(id, firstName, lastName, specialization);
         return ResponseEntity.accepted().build();
     }
 

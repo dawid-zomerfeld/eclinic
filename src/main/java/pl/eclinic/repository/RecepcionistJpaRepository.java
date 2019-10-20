@@ -19,4 +19,9 @@ public interface RecepcionistJpaRepository extends CrudRepository<Recepcionist, 
     @Query(value = "UPDATE Recepcionist r SET r.banned = :banned WHERE r.id = :id")
     void updateRecepcionistBanned(@Param("id") Long id, @Param("banned") Boolean banned);
 
+    @Modifying(clearAutomatically = true)
+    @Transactional
+    @Query(value = "UPDATE Recepcionist r SET r.firstName = :firstName, r.lastName = :lastName WHERE r.id = :id")
+    void updateRecepcionist(@Param("id") Long id, @Param("firstName") String firstName, @Param("lastName") String lastName);
+
 }

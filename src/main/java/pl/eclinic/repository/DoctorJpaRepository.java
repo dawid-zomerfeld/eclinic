@@ -19,4 +19,9 @@ public interface DoctorJpaRepository extends CrudRepository<Doctor, Long> {
     @Transactional
     @Query(value = "UPDATE Doctor d SET d.banned = :banned WHERE d.id = :id")
     void updateDoctorBanned(@Param("id") Long id, @Param("banned") Boolean banned);
+
+    @Modifying(clearAutomatically = true)
+    @Transactional
+    @Query(value = "UPDATE Doctor d SET d.firstName = :firstName, d.lastName = :lastName, d.specialization = :specialization WHERE d.id = :id")
+    void updateDoctor(@Param("id") Long id, @Param("firstName") String firstName, @Param("lastName") String lastName, @Param("specialization") String specialization);
 }
