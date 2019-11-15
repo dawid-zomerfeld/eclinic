@@ -14,6 +14,8 @@ public interface DoctorJpaRepository extends CrudRepository<Doctor, Long> {
 
     Set<Doctor> findAll();
     Optional<Doctor> findByEmail(String email);
+    Optional<Doctor> findById(Long id);
+    Doctor findDoctorById(Long id);
 
     @Modifying(clearAutomatically = true)
     @Transactional

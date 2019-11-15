@@ -1,5 +1,6 @@
 package pl.eclinic.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -34,6 +35,7 @@ public class Doctor implements Serializable {
 
     private Boolean banned;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Set<Visit> visits = new HashSet<>();
 
