@@ -19,11 +19,11 @@ public class Visit implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @ManyToOne(targetEntity = Doctor.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name="id_doctor")
     private Doctor doctor;
 
-    @JsonIgnore
     @ManyToOne(targetEntity = Patient.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name="id_patient")
     private Patient patient;
@@ -43,5 +43,11 @@ public class Visit implements Serializable {
     private Integer hour;
 
     private Integer minutes;
+
+    private String prescription;
+
+    private String diagnosis;
+
+    private String recommendations;
 
 }

@@ -17,6 +17,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static pl.eclinic.domain.VisitStatus.NEW;
+import static pl.eclinic.domain.VisitStatus.PAID;
 
 @Service
 public class RecepcionistService {
@@ -45,9 +46,14 @@ public class RecepcionistService {
 
     public Optional<Doctor> findDoctor(Long id) {return doctorJpaRepository.findById(id);}
 
-    public Set<Visit> getVisits(Long id, Integer day, Integer month, Integer year) {
+    public Set<Visit> getVisitsByDoctor(Long id, Integer day, Integer month, Integer year) {
         return visitJpaRepository.findAllByDoctorIdAndDayAndMonthAndYear(id, day, month, year);
     }
+
+    public Set<Visit> getAllVisitsByDate(Integer day, Integer month, Integer year) {
+        return visitJpaRepository.findAllByDayAndMonthAndYearAndPatientIsNotNull(day, month, year);
+    }
+
 
     public ResponseEntity deleteVisit(Long visitId, Long doctorId) {
              visitJpaRepository.findVisitByIdAndDoctorId(visitId, doctorId)
@@ -102,6 +108,15 @@ public class RecepcionistService {
             }
         }
         visitJpaRepository.saveAll(visitsToAdd);
+        return ResponseEntity.accepted().build();
+    }
+
+    public ResponseEntity paidVisit(Long visitId) {
+        visitJpaRepository.findVisitById(visitId)
+                .map(visit -> {
+                    visit.setStatus(PAID);
+                    return  visitJpaRepository.save(visit);
+                });
         return ResponseEntity.accepted().build();
     }
 }

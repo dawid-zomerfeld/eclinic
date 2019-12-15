@@ -45,6 +45,16 @@ public class RecepcionistVisitControler {
 
     @GetMapping(value = "/recepcionist/add/doctors/{id}/visits/{day}/{month}/{year}")
     public Set<Visit> getDoctorVisits(@PathVariable("id") Long id, @PathVariable("year") Integer year, @PathVariable("month") Integer month, @PathVariable("day") Integer day) {
-        return recepcionistService.getVisits(id, day, month, year);
+        return recepcionistService.getVisitsByDoctor(id, day, month, year);
+    }
+
+    @GetMapping(value = "/recepcionist/search/visits/{day}/{month}/{year}")
+    public Set<Visit> getAllVisitsByDate(@PathVariable("year") Integer year, @PathVariable("month") Integer month, @PathVariable("day") Integer day) {
+        return recepcionistService.getAllVisitsByDate(day, month, year);
+    }
+
+    @PostMapping(value = "/recepcionist/search/visits/{idVisit}")
+    public ResponseEntity paidVisit(@PathVariable("idVisit") Long idVisit) {
+        return recepcionistService.paidVisit(idVisit);
     }
 }

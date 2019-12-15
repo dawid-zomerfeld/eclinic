@@ -1,5 +1,6 @@
 package pl.eclinic.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "patient")
+@Entity(name = "Patient")
 public class Patient implements Serializable {
 
     @Id
@@ -46,6 +47,7 @@ public class Patient implements Serializable {
 
     private String password = "";
 
+    @JsonIgnore
     @OneToMany(mappedBy = "patient", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Set<Visit> visits = new HashSet<>();
 
