@@ -53,7 +53,7 @@ public class RecepcionistVisitControler {
         return recepcionistService.getAllVisitsByDate(day, month, year);
     }
 
-    @PostMapping(value = "/recepcionist/search/visits/{idVisit}")
+    @PatchMapping(value = "/recepcionist/search/visits/{idVisit}")
     public ResponseEntity paidVisit(@PathVariable("idVisit") Long idVisit) {
         return recepcionistService.paidVisit(idVisit);
     }

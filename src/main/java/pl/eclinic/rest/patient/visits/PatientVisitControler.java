@@ -62,4 +62,9 @@ public class PatientVisitControler {
     public ResponseEntity cancelVisit(@PathVariable("idVisit") Long idVisit) {
         return patientService.cancelVisit(idVisit);
     }
+
+    @PostMapping(value = "/patient/visits/pay/{idVisit}")
+    public ResponseEntity payVisit(@PathVariable("idVisit") Long idVisit) {
+        return patientService.payVisit(idVisit);
+    }
 }

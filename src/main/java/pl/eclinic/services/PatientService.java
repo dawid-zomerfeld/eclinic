@@ -14,8 +14,7 @@ import javax.validation.constraints.Null;
 import java.util.Optional;
 import java.util.Set;
 
-import static pl.eclinic.domain.VisitStatus.NEW;
-import static pl.eclinic.domain.VisitStatus.RESERVED;
+import static pl.eclinic.domain.VisitStatus.*;
 
 @Service
 public class PatientService {
@@ -81,6 +80,15 @@ public class PatientService {
                 .map(visit -> {
                     visit.setStatus(NEW);
                     visit.setPatient(null);
+                    return  visitJpaRepository.save(visit);
+                });
+        return ResponseEntity.accepted().build();
+    }
+
+    public ResponseEntity payVisit(Long visitId) {
+        visitJpaRepository.findVisitById(visitId)
+                .map(visit -> {
+                    visit.setStatus(PAID);
                     return  visitJpaRepository.save(visit);
                 });
         return ResponseEntity.accepted().build();

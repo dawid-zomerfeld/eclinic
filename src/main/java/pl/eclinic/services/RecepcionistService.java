@@ -115,7 +115,8 @@ public class RecepcionistService {
         visitJpaRepository.findVisitById(visitId)
                 .map(visit -> {
                     visit.setStatus(PAID);
-                    return  visitJpaRepository.save(visit);
+                   visitJpaRepository.save(visit);
+                   return ResponseEntity.accepted().build();
                 });
         return ResponseEntity.accepted().build();
     }
